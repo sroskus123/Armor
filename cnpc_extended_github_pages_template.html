@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CNPCExtended - Instalace modu</title>
+  <style>
+    :root {
+      --bg: #08090d;
+      --sidebar: #111318;
+      --sidebar-2: #171a21;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --line: #27272a;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --purple: #a855f7;
+      --yellow: #f59e0b;
+      --card: #0f1117;
+      --code: #020617;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--sidebar);
+      border-right: 1px solid var(--line);
+      padding: 20px 12px;
+    }
+
+    .brand {
+      padding: 0 8px 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: 0.2px;
+    }
+
+    .brand p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.8px;
+    }
+
+    .nav-section {
+      margin-bottom: 22px;
+    }
+
+    .nav-title {
+      padding: 0 8px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #e4e4e7;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #172033;
+      color: white;
+    }
+
+    main {
+      max-width: 900px;
+      width: 100%;
+      padding: 46px 56px 90px;
+    }
+
+    .hero h2 {
+      font-size: 34px;
+      margin: 0 0 12px;
+      letter-spacing: -0.8px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-weight: 700;
+      font-size: 12px;
+      border: 1px solid transparent;
+    }
+
+    .badge.yellow { color: var(--yellow); background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
+    .badge.green { color: #4ade80; background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.35); }
+    .badge.purple { color: #c084fc; background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.35); }
+    .badge.blue { color: #93c5fd; background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.35); }
+
+    .hero p {
+      max-width: 760px;
+      color: #d4d4d8;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .hero strong,
+    section strong {
+      color: #ffffff;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      background: var(--sidebar-2);
+    }
+
+    .btn.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .btn:hover {
+      filter: brightness(1.12);
+    }
+
+    section {
+      margin-top: 44px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    section h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      letter-spacing: -0.4px;
+    }
+
+    section p,
+    li {
+      color: #d4d4d8;
+    }
+
+    ul,
+    ol {
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    code {
+      background: #0b1220;
+      border: 1px solid #1e293b;
+      color: #7dd3fc;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    pre {
+      overflow-x: auto;
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      color: #d4d4d8;
+    }
+
+    pre code {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      color: inherit;
+    }
+
+    .note {
+      border-left: 4px solid var(--blue);
+      background: rgba(59, 130, 246, 0.08);
+      padding: 14px 16px;
+      border-radius: 8px;
+      color: #dbeafe;
+    }
+
+    .footer {
+      margin-top: 50px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    @media (max-width: 800px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+      }
+
+      main {
+        padding: 34px 22px 70px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>CNPCExtended</h1>
+        <p>v1.2.0 · Forge 1.20.1 · Fabric 1.21.1</p>
+      </div>
+
+      <nav>
+        <div class="nav-section">
+          <div class="nav-title">Getting Started</div>
+          <a class="nav-link active" href="#home">Home</a>
+          <a class="nav-link" href="#installation">Installation</a>
+          <a class="nav-link" href="#quick-start">Quick Start</a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-title">Mod Info</div>
+          <a class="nav-link" href="#features">Funkce</a>
+          <a class="nav-link" href="#requirements">Požadavky</a>
+          <a class="nav-link" href="#download">Download</a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-title">Reference</div>
+          <a class="nav-link" href="#faq">FAQ</a>
+          <a class="nav-link" href="#support">Podpora</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main>
+      <header class="hero" id="home">
+        <h2>CNPCExtended</h2>
+
+        <div class="badges">
+          <span class="badge yellow">v1.2.0</span>
+          <span class="badge green">MC 1.20.1 / 1.21.1</span>
+          <span class="badge purple">Forge 47+</span>
+          <span class="badge blue">Fabric 1.21.1</span>
+        </div>
+
+        <p>
+          Extension framework pro <strong>CustomNPCs</strong>. Tento web slouží jako jednoduchý návod,
+          jak mod stáhnout, nainstalovat a spustit na klientovi i serveru.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="#download">Stáhnout mod</a>
+          <a class="btn" href="#installation">Zobrazit instalaci</a>
+        </div>
+      </header>
+
+      <section id="features">
+        <h2>Co mod umí</h2>
+        <p>
+          Sem si napiš hlavní informace o modu. Můžeš zde popsat, co hráč získá po instalaci.
+        </p>
+
+        <ul>
+          <li><strong>HTML GUI</strong> — možnost používat vlastní HTML menu ve hře.</li>
+          <li><strong>HUD overlays</strong> — vlastní prvky na obrazovce hráče.</li>
+          <li><strong>Client + Server mod</strong> — mod je potřeba mít na serveru i u hráče.</li>
+          <li><strong>Custom commands</strong> — vlastní příkazy a napojení na scripty.</li>
+          <li><strong>Asset loading</strong> — načítání vlastních obrázků, stylů a souborů.</li>
+        </ul>
+      </section>
+
+      <section id="requirements">
+        <h2>Požadavky</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Minecraft</h3>
+            <p>Podporované verze: 1.20.1 / 1.21.1</p>
+          </div>
+          <div class="card">
+            <h3>Loader</h3>
+            <p>Forge 47+ nebo Fabric podle verze modu.</p>
+          </div>
+          <div class="card">
+            <h3>Server</h3>
+            <p>Mod musí být ve složce <code>mods</code> na serveru.</p>
+          </div>
+          <div class="card">
+            <h3>Klient</h3>
+            <p>Každý hráč musí mít mod také ve své složce <code>mods</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="installation">
+        <h2>Instalace</h2>
+        <ol>
+          <li>Stáhni správnou verzi modu podle verze Minecraftu.</li>
+          <li>Vypni Minecraft i server.</li>
+          <li>Vlož soubor <code>.jar</code> do složky <code>mods</code>.</li>
+          <li>Stejný soubor musí mít i hráči na klientovi.</li>
+          <li>Spusť server a zkontroluj konzoli, zda mod naběhl bez chyby.</li>
+        </ol>
+
+        <div class="note">
+          Pokud server po instalaci spadne, zkontroluj, zda máš správnou verzi Forge/Fabric a správnou verzi Minecraftu.
+        </div>
+      </section>
+
+      <section id="quick-start">
+        <h2>Quick Start</h2>
+        <p>Ukázka jednoduché struktury, kterou můžeš dát do návodu:</p>
+
+        <pre><code>minecraft-server/
+├─ mods/
+│  ├─ CNPCExtended.jar
+│  └─ CustomNPCs.jar
+└─ world/
+</code></pre>
+      </section>
+
+      <section id="download">
+        <h2>Download</h2>
+        <p>
+          Tady si později vložíš odkaz na GitHub Releases, Modrinth, CurseForge nebo přímo na soubor.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/TVUJ-NAME/TVUJ-REPO/releases" target="_blank">GitHub Releases</a>
+          <a class="btn" href="https://github.com/TVUJ-NAME/TVUJ-REPO" target="_blank">Zdrojový kód</a>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Musí mít mod i hráči?</h3>
+            <p>Ano. Pokud mod přidává klientské funkce, musí být na serveru i u hráčů.</p>
+          </div>
+          <div class="card">
+            <h3>Funguje to na Forge?</h3>
+            <p>Ano, pokud stáhneš Forge build pro správnou verzi Minecraftu.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="support">
+        <h2>Podpora</h2>
+        <p>
+          Pro nahlášení chyby vytvoř issue na GitHubu nebo napiš správci modu.
+        </p>
+      </section>
+
+      <div class="footer">
+        © 2026 CNPCExtended. Tento web běží jako statická stránka přes GitHub Pages.
+      </div>
+    </main>
+  </div>
+</body>
+</html>
